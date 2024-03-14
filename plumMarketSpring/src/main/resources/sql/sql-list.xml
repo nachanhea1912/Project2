@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.plummarketdb.mapper.ListMapper">
+
+    <select id="DetailPageInfo" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+
+        select l.list_idx,l.list_sell_state, l.list_title, l.list_content,  l.list_create_date, l.list_loc, l.list_money, l.list_hit_cnt , l.list_user_nick, i.list_image_name,  COALESCE((select user_profile from user where user_nick = l.list_user_nick), 'noImage') as user_profile,  (select user_idx from  user where user_nick = l.list_user_nick)as user_idx from
+        list as l join list_image as i
+        on l.list_idx = i.list_image_list_idx
+        where l.list_idx = #{listIdx}
+        and l.list_completed_yn = 'N';
+
+    </select>
+
+    <select id="NoImageDetail" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+
+        select list_idx, list_title,list_sell_state, list_content,  list_create_date, list_create_date,  list_loc, list_money, list_hit_cnt , list_user_nick,  COALESCE((select user_profile from user where user_nick = list_user_nick), 'noImage') as user_profile,  (select user_idx from  user where user_nick = list_user_nick)as user_idx from list  where list_idx = #{listIdx}
+    </select>
+
+    <update id="updateHit" parameterType="String">
+        update list set list_hit_cnt = list_hit_cnt + 1 where list_idx = #{idx}
+
+    </update>
+
+    <update id="UpdateBuy" parameterType="String">
+        UPDATE list SET buy_nick = #{nick}, list_sell_state = 1 ,list_cate = 1 WHERE list_idx = #{idx}
+    </update>
+</mapper>

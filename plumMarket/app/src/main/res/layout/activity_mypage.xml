@@ -1,0 +1,216 @@
+<!-- res/layout/activity_mypage.xml -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/btn_Mypage_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:text="마이페이지"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 사용자 로고 이미지 -->
+            <ImageView
+                android:id="@+id/Logoimage"
+                android:layout_width="229dp"
+                android:layout_height="135dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ss" />
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="0dp">
+
+            <!-- 프로필 사진 -->
+            <ImageView
+                android:id="@+id/profilePicture"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/profileimage" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- 사용자 이름 -->
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="사용자 이름"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- 사용자 이메일 -->
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:text="user@example.com"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 관심 목록 -->
+            <LinearLayout
+                android:id="@+id/btn_Gansim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="79dp"
+                    android:src="@drawable/aaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="관심목록"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btnGansim"
+                    android:layout_width="55dp"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="120dp"
+                    android:src="@drawable/right" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 여기에 관심 목록에 대한 UI 요소들을 추가 -->
+
+        <!-- 구매 목록 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 판매 목록 -->
+            <LinearLayout
+                android:id="@+id/btn_Panmae"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="79dp"
+                    android:src="@drawable/d" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="판매내역"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btnPanmae"
+                    android:layout_width="55dp"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="120dp"
+                    android:src="@drawable/right" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 여기에 구매 목록에 대한 UI 요소들을 추가 -->
+
+        <!-- 구매 내역-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btn_gumae"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="79dp"
+                    android:src="@drawable/s" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="구매내역"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/btnGumae"
+                    android:layout_width="55dp"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="120dp"
+                    android:src="@drawable/right" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 여기에 판매 목록에 대한 UI 요소들을 추가 -->
+
+        <!-- 로그아웃 버튼 -->
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/colorAccent"
+            android:text="로그아웃" />
+
+
+
+    </LinearLayout>
+</ScrollView>

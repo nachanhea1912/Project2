@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.plummarketdb.mapper.WriteMapper">
+    <insert id="InsertList" parameterType="com.bitc.plummarketdb.DTO.ListDTO" useGeneratedKeys="true" keyProperty="listIdx">
+        INSERT INTO
+            list(list_title, list_content, list_user_nick, list_hit_cnt, list_cate, list_loc, list_money)
+        VALUES
+            (#{listTitle},#{listContent},#{listUserNick},'0','0',#{listLoc},#{listMoney})
+
+    </insert>
+    <select id="SearchListTitle" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+        list_idx, list_title, list_content, list_user_nick, list_create_date, list_completed_yn, list_cate
+        , list_loc, list_money,     COALESCE(
+        (SELECT b.list_image_name FROM list_image AS b WHERE list.list_idx = b.list_image_list_idx LIMIT 1),
+        'noImage'
+        ) AS list_image_name
+        FROM
+        list
+        WHERE
+        list_title LIKE '%${Search}%'
+        OR
+        list_content LIKE '%${Search}%'
+        AND
+        list_completed_yn = 'N'
+        ORDER BY
+        list_idx
+        DESC
+    </select>
+
+    <insert id="InsertImageList" parameterType="com.bitc.plummarketdb.DTO.ListImageDTO">
+        insert into list_image(list_image_name,list_image_list_idx)
+        values(#{listImageName},#{ListImageListIdx})
+
+    </insert>
+    <select id="SelectList" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+        list_idx, list_title, list_content, list_user_nick, list_create_date, list_completed_yn, list_cate,
+        list_loc, list_money,
+        COALESCE(
+        (SELECT b.list_image_name FROM list_image AS b WHERE a.list_idx = b.list_image_list_idx LIMIT 1),
+        22
+        ) AS list_image_name
+        FROM
+            list AS a
+        WHERE
+        list_completed_yn = 'N'
+        ORDER BY
+            list_update_date DESC
+    </select>
+
+    <select id="PanmaeSelectList" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+        list_idx, list_title, list_content, list_user_nick, list_create_date, list_completed_yn, list_cate, list_loc, list_money
+        FROM
+        list
+        WHERE
+        list_user_nick = #{userNick}
+        AND
+        (list_sell_state = 0 OR list_sell_state = 3)
+        AND
+            list_completed_yn = 'N'
+        AND
+            list_cate = 0
+        ORDER BY
+            list_update_date DESC
+    </select>
+
+    <select id="PanmaeSelectCompleteList" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+            list_idx, list_title, list_content, list_user_nick, list_create_date, list_completed_yn,list_cate, list_loc, list_money
+        FROM
+            list
+        WHERE
+            list_user_nick = #{userNick}
+        AND
+            list_cate = 0
+        AND
+            list_sell_state = 1
+        AND
+            list_completed_yn = 'N'
+        ORDER BY
+            list_update_date
+        DESC;
+    </select>
+
+    <select id="PanmaeSelectHideList" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+            list_idx, list_title, list_content, list_user_nick, list_create_date, list_completed_yn,list_cate, list_loc, list_money
+        FROM
+            list
+        WHERE
+            list_user_nick = #{userNick}
+        AND
+            list_cate = 0
+        AND
+            list_sell_state = 2
+        AND
+            list_completed_yn = 'N'
+        ORDER BY
+            list_update_date
+        DESC;
+    </select>
+
+    <update id="updateSellReservation" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 0,
+            list_update_date = NOW()
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellComplete" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 1,
+            list_update_date = NOW()
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellHide" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 2,
+            list_update_date = NOW()
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellOngoing" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 0,
+            list_update_date = NOW()
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellHideRemove" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 0,
+            list_update_date = NOW()
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellupdate" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_update_date = NOW()
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellRervation" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 3
+        WHERE
+        list_idx = #{listIdx}
+    </update>
+
+    <update id="updateSellRervationDelete" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_sell_state = 0
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <select id="selectSellState" parameterType="com.bitc.plummarketdb.DTO.ListDTO" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+            list_sell_state
+        FROM
+            list
+        WHERE
+            list_idx = #{listIdx}
+    </select>
+
+    <update id="updateSellDelete" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_completed_yn = 'Y'
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <update id="Modify" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+        list
+        SET
+        list_title = #{listTitle},
+        list_content = #{listContent},
+        list_money = #{listMoney},
+        list_update_date = NOW()
+        WHERE
+        list_idx = #{listIdx}
+    </update>
+
+
+    <select id="getListGumaeList" parameterType="String" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+        list_idx, list_title, list_content, list_user_nick, list_create_date, list_completed_yn, list_cate,
+        list_loc, list_money,list_sell_state,
+        COALESCE(
+        (SELECT b.list_image_name FROM list_image AS b WHERE a.list_idx = b.list_image_list_idx LIMIT 1),
+        22
+        ) AS list_image_name
+        FROM
+        list AS a
+        WHERE
+        buy_nick=#{userNick}
+        AND
+        list_cate = 1
+        ORDER BY
+        list_update_date DESC
+    </select>
+
+
+
+</mapper>

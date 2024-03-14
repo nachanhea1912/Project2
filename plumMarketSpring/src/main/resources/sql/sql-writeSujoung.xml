@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.plummarketdb.mapper.WriteSujoungMapper">
+
+    <insert id="writeList" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        INSERT INTO
+            list(list_title, list_content, list_user_nick, list_hit_cnt, list_cate, list_loc, list_money)
+        VALUES
+            (#{listTitle},#{listContent},#{listUserNick},'0','0',#{listLoc},#{listMoney})
+    </insert>
+
+    <update id="UpdateList" parameterType="com.bitc.plummarketdb.DTO.ListDTO">
+        UPDATE
+            list
+        SET
+            list_title = #{listTitle},
+            list_content = #{listContent},
+            list_user_nick = #{listUserNick},
+            list_hit_cnt = #{listHitCnt},
+            list_loc = #{listLoc},
+            list_money = #{listMoney}
+        WHERE
+            list_idx = #{listIdx}
+    </update>
+
+    <select id="selectList" resultType="com.bitc.plummarketdb.DTO.ListDTO">
+        SELECT
+            list_idx, list_title, list_content, list_loc,list_cate,list_hit_cnt,list_user_nick,list_money,list_create_date
+        FROM
+            list
+        WHERE
+            list_idx = #{listIdx}
+    </select>
+</mapper>

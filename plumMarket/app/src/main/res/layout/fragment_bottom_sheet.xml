@@ -1,0 +1,63 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvSellReservation"
+        android:text="예약중"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvSellComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="거래완료"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/tvSellOngoing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="판매중"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvSellEdit"
+        android:text="게시글 수정"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/tvSellHide"
+        android:text="숨기기"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvSellDelete"
+        android:text="삭제"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#FF0000"
+        android:padding="10dp"
+        android:gravity="center"/>
+
+</LinearLayout>

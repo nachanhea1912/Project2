@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.plummarketdb.mapper.UserMapper">
+    <select id="isUserInfo" parameterType="Map" resultType="int">
+        SELECT
+            count(*)AS cnt
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+        AND
+            user_pw = #{userPw}
+        AND
+            user_deleted_yn = 'N';
+    </select>
+    <select id="UserLogin" parameterType="String" resultType="com.bitc.plummarketdb.DTO.userDTO">
+        SELECT
+        user_idx,
+        user_id,
+        user_nick,
+        user_pw,
+        user_email,
+        user_adress,
+        user_phone_num,
+        user_deleted_yn,
+        user_favlist,
+        user_rating,
+        user_profile,
+        user_comment
+        FROM
+        user
+        WHERE
+        user_id= #{id}
+    </select>
+
+    <select id="getUserInfo" parameterType="String" resultType="com.bitc.plummarketdb.DTO.userDTO">
+        SELECT
+        user_idx,
+        user_id,
+        user_nick,
+        user_pw,
+        user_email,
+        user_adress,
+        user_phone_num,
+        user_deleted_yn,
+        user_favlist,
+        user_rating,
+        user_profile,
+        user_comment,
+        (select count(*) from user join list on user.user_nick= list.list_user_nick where user_nick = #{nick})as list_count
+        FROM
+        user
+        WHERE
+        user_nick= #{nick}
+    </select>
+
+    <insert id="insertUser" parameterType="com.bitc.plummarketdb.DTO.userDTO">
+        INSERT INTO
+            user (user_id, user_pw, user_nick, user_email)
+        VALUES
+            (#{userId}, #{userPw}, #{userNick}, #{userEmail})
+    </insert>
+
+    <update id="UploadProFile" parameterType="com.bitc.plummarketdb.DTO.userDTO">
+        UPDATE
+            user
+        SET
+            user_profile = #{userProfile}
+        WHERE
+            user_id = #{userId}
+    </update>
+
+    <update id="PlusRating" parameterType="String">
+        update user set user_rating = user_rating + 1 where user_nick = #{nick}
+
+
+
+    </update>
+
+
+    <update id="MinusRating" parameterType="String">
+        update user set user_rating = user_rating - 1 where user_nick = #{nick}
+
+
+
+    </update>
+</mapper>

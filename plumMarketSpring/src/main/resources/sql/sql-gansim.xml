@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.plummarketdb.mapper.GansimMapper">
+    <select id="selectGansimList" parameterType="String" resultType="com.bitc.plummarketdb.DTO.GansimDTO">
+        select
+        fav_list_idx,
+        (select list_title from list where list_idx = a.fav_list_list_idx) as fav_title,
+        (select list_money from list where list_idx = a.fav_list_list_idx) as fav_money,
+        (select list_sell_state from list where list_idx = a.fav_list_list_idx) as fav_sell_state,
+        COALESCE(
+        (SELECT b.list_image_name FROM list_image AS b WHERE b.list_image_list_idx = a.fav_list_list_idx limit 1),
+        22
+        ) AS fav_image
+        from
+        fav_list a
+        where
+        fav_list_user_id = #{id};
+    </select>
+
+    <insert id="insertGansim" parameterType="String">
+
+        insert into fav_list(fav_list_user_id,fav_list_list_idx)values(#{id},#{listIdx})
+    </insert>
+
+    <select id="gansimChk" parameterType="String" resultType="int">
+        select count(*) from fav_list where fav_list_user_id = #{id} and fav_list_list_idx = #{listIdx}
+    </select>
+
+</mapper>

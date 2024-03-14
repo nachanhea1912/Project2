@@ -1,0 +1,152 @@
+<!-- res/layout/activity_sales_history.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PanmaeActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/ww"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 페이지 상단 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 뒤로가기 버튼 -->
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="55dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/back" />
+
+            <!-- 페이지 제목 -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="매너 상세"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!--        정취선 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ACEABC"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="받은 매너 칭찬"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 받은 매너 칭찬이 없어요."
+                android:textSize="13dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+<!--        정취선 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#7EE399"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="받은 비매너 칭찬"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 받은 비매너 칭찬이 없어요."
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="#CEE1A9"
+            android:backgroundTint="@color/colorAccent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="참고사항"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="10"
+                android:ellipsize="start"
+                android:text=" -받은 비매너 내역은 나에게만 보입나다 \n -매너 온도가 올라가는 경우(가산점 높은 순) \n1.거래 상대에게 받은 긍정 거래 후기 \n2.거래상대에게 받은 매너 칭찬 \n3.대화 상대에게 받은 매너 칭찬 \n-매너 온도가 내려가는 경우 (감산점 높은 순) \n1.이용정지 계정 \n2.거래 상대의 비매너 평가 \n대화 상대의 비매너 평가"
+                android:textSize="13dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_marginTop="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="따뜻한 거래를 위한 \n메실 거래매너를 학인 하세요"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

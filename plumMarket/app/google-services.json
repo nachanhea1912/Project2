@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919800843456",
+    "project_id": "androidchat-c4b8a",
+    "storage_bucket": "androidchat-c4b8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919800843456:android:27c5667439fade3cd2f125",
+        "android_client_info": {
+          "package_name": "com.bitc.plumMarket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqsQMSNRMTvMS4rGYwvqHtKwQKeJA97Nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

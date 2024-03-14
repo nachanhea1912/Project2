@@ -1,0 +1,4 @@
+firebase의 realtime database를 이용해 chat의 상대방 idx 내 idx + 게시글 idx를 이용해서 방을 만들었고 채팅방이름을 만들었으며 채팅 메시지랑 담기게 하였습니다. chatData 클래스를 이용해서 받아옴
+
+firebase의 storage 를 이용하여 이미지명을 저장한다음 그 이미지명을 mysql에 같이 저장하였으며, firebase storage 주소를 불러와서  이미지를 Glide를 통해 이미지를 불러왔습니다.
+그외는 aws ec2 서버에 mysql 을 깔아서 연동하였습니다.
